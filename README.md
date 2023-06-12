@@ -8,6 +8,20 @@ Documentation (official) : https://registry.terraform.io/namespaces/hashicorp
 
 Certification (official) : https://www.hashicorp.com/certification/terraform-associate 
 
+# Useful theory
+- HashiCorp Terraform is an IaC tool that lets you define both cloud and on-prem resources in human-readable configuration files that you can version, reuse, and share.
+- You can then use a consistent workflow to provision and manage all of your infrastructure throughout its lifecycle. Terraform can manage low-level components like compute, storage, and networking resources, as well as high-level components like DNS entries and SaaS features.
+- With IaC, we are not (or less) prone to human error and we can scale up (and down) the infrastructure easily. Associate with versioning, we can see an incremental history of who changed what.
+- Terraform uses the API of its providers to create and manage the resources.
+- There is a lot of providers for services or platforms in Terraform.
+- The state file (tfstate ?) is the real configuration of your infratructure. Terraform use this file to determine the changes to make to the infrastructure after the "plan".
+- The Terraform config file is in  declarative format, it means that the file is the end state, the dependency and the order of execution are managed by Terraform.
+- A "module" is a reusable and configurable collections of infrastructure provided to save time and offer a standardized configuration.
+
+# To-Do
+- Use Terraform Cloud.
+- Why Terraform ?
+
 ## Basic commands
 ```
 terraform -help # to show commands list
