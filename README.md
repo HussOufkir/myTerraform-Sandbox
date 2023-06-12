@@ -21,6 +21,7 @@ Certification (official) : https://www.hashicorp.com/certification/terraform-ass
 # To-Do
 - Use Terraform Cloud.
 - Why Terraform ?
+- Terraform or Ansible ?
 
 ## Basic commands
 ```
