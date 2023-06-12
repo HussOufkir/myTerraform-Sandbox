@@ -80,7 +80,7 @@ export TF_LOG_PATH="" # to show the logs in the terminal only, as before
 ```
 
 ## How-to
-# Connect to AWS
+### Connect to AWS
 1. Create a User and a User Group in AWS.
 2. Store the ACCESS KEY ID and the SECRET ACCESS KEY.
 3.  
