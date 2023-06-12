@@ -87,7 +87,7 @@ export TF_LOG_PATH="" # to show the logs in the terminal only, as before
 ```
 aws configure # and follow the instructions to store the credentials
 ```
-After that, the credentials will be stored in a folder (in Windows : C:\Users\*\.aws) and AWS can be used by adding the provider block in the TF file.
+After that, the credentials will be stored in a folder (in Windows : C:\Users\\*\\.aws) and AWS can be used by adding the provider block in the TF file.
 
 ```hcl
 provider "aws" {
