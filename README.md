@@ -1,9 +1,4 @@
 # myTerraform-Sandbox
-<<<<<<< HEAD
-just a sandbox to test some terraform functionalities 
-
-VPC : virtual private cloud. it's like an physical network (with router, switch, etc) but in the cloud and it can be scallable.
-=======
 (__be careful with the information you will find here, it's just a sandbox__)
 
 # Links
@@ -107,5 +102,4 @@ provider "aws" {
 }
 ```
 More info : https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html 
->>>>>>> e3bdbba447af4271322140a312b9085796dfa9f8
 
