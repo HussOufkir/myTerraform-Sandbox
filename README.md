@@ -31,10 +31,14 @@ terraform init # to prepapre the working directory
 terraform validate # to validate the syntax (doesnt if the code is correct or not)
 terraform plan # to prepapre the configuration by showing the changes
 terraform apply # to create/update the infrastructure
-terraform destroy # to destroy the previously created infrastructure (it destroys the configuration stored in the tf file)
+terraform destroy # to destroy the previously created infrastructure (it destroys the configuration stored in the tfstate, i think it destroys the entire configuration managed by terraform, to verify !)
 terraform refresh # to update the state to match remote systems
 ```
-NOTE1 : The destroy command destroys what is declared in the tf file. If resources A, B and C have been created by terraform but they are not in the tf file during the destroy, they will be ignored and the resources D, which is the resource to destroy, will be considered.
+
+## List of files
+- file.tf : the file describing the configuration
+- file.tfstate : the current configuration managed by terraform
+- file.tfstate.backup : the previous file.tfstate
 
 ## Required concepts
 ### CIDR (Classless Inter-Domain Routing)
