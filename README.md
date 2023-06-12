@@ -2,9 +2,11 @@
 (__be careful with the information you will find here, it's just a sandbox__)
 
 # Links
-Tutorials (official) : https://developer.hashicorp.com/terraform/tutorials
-Documentation (official) : https://registry.terraform.io/namespaces/hashicorp
-Certification (official) : https://www.hashicorp.com/certification/terraform-associate
+Tutorials (official) : https://developer.hashicorp.com/terraform/tutorials 
+
+Documentation (official) : https://registry.terraform.io/namespaces/hashicorp 
+
+Certification (official) : https://www.hashicorp.com/certification/terraform-associate 
 
 ## Basic commands
 ```
