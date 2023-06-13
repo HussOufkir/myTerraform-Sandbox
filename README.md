@@ -32,7 +32,7 @@ terraform validate # to validate the syntax (doesnt if the code is correct or no
 terraform plan # to prepapre the configuration by showing the changes
 terraform apply # to create/update the infrastructure
 terraform destroy # to destroy the previously created infrastructure (it destroys the configuration stored in the tfstate, it destroys the entire configuration managed by terraform)
-terraform destroy -target="<provider>_<ressource_type>.<name>"
+terraform destroy -target="<provider>_<ressource_type>.<name>" # to destroy a specific resource
 terraform refresh # to update the state to match remote systems
 ```
 
