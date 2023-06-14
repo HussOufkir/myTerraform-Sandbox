@@ -36,7 +36,7 @@ terraform state list # to see a list of ressources actually managed by Terraform
 ### Apply
 ```
 terraform apply # to create/update the infrastructure
-terraform apply -target="<provider>_<ressource_type>.<name>" # to create/update a resource of the infrastructure
+terraform apply -target="<provider>_<ressource_type>.<name>" # to create/update a resource of the infrastructure (the linked resources will be also created/updated)
 ```
 ### Destroy
 ```
