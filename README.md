@@ -30,10 +30,17 @@ terraform -help <cmd> # to show infos for a command
 terraform init # to prepapre the working directory
 terraform validate # to validate the syntax (doesnt if the code is correct or not)
 terraform plan # to prepapre the configuration by showing the changes
-terraform apply # to create/update the infrastructure
-terraform destroy # to destroy the previously created infrastructure (it destroys the configuration stored in the tfstate, it destroys the entire configuration managed by terraform)
-terraform destroy -target="<provider>_<ressource_type>.<name>" # to destroy a specific resource
 terraform refresh # to update the state to match remote systems
+```
+### Apply
+```
+terraform apply # to create/update the infrastructure
+terraform apply -target="<provider>_<ressource_type>.<name>" # to create/update a resource of the infrastructure
+```
+### Destroy
+```
+terraform destroy # to destroy the previously created infrastructure (it destroys the configuration stored in the tfstate, it destroys the entire configuration managed by terraform)
+terraform destroy -target="<provider>_<ressource_type>.<name>" # to destroy a specific resource (the linked resources will be also deleted)
 ```
 
 ## List of files
