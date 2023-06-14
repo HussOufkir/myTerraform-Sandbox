@@ -18,7 +18,6 @@ Certification (official) : https://www.hashicorp.com/certification/terraform-ass
 - The Terraform config file is in  declarative format, it means that the file is the end state, the dependency and the order of execution are managed by Terraform.
 - A "module" is a reusable and configurable collections of infrastructure provided to save time and offer a standardized configuration.
 - Terraform can manage IaaS (AWS, Azure, GCP, ... and also on-premise VMware, ...), PaaS (K8S, Heroku, ...) and SaaS (GitHub, Fastly, ...).
-- 
 
 # To-Do
 - Use Terraform Cloud. (one state ? centralized vars ? vcs ?)
@@ -58,6 +57,32 @@ terraform destroy -target="<provider>_<ressource_type>.<name>" # to destroy a sp
 To describe an ip block.
 10.0.0.0/24 means that 24 bits (3\*8) bits are used to identify the network and 8 bits are used to identify some addresses in the network (10.0.0.0 to 10.0.0.255)
 
+## Syntax for adding an external provider (not from TF)
+```hcl
+terraform {
+  required_providers {
+    <name of the provider> = {
+      source  = "<source>"
+      version = "..."
+    }
+  }
+}
+```
+
+```hcl
+terraform {
+  required_providers {
+    docker = {
+      source  = "kreuzwerker/docker"
+      version = "~> 3.0.1"
+    }
+  }
+}
+
+provider "docker" {
+  host    = "npipe:////.//pipe//docker_engine"
+}
+```
 
 ## Syntax for a resource
 ```hcl
