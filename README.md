@@ -21,9 +21,11 @@ Certification (official) : https://www.hashicorp.com/certification/terraform-ass
 - 
 
 # To-Do
-- Use Terraform Cloud. (one state ? centralized vars ?)
+- Use Terraform Cloud. (one state ? centralized vars ? vcs ?)
 - Why Terraform ?
 - Terraform or Ansible ?
+- Provisioner ?
+- Sentinel policies ?
 
 ## Basic commands
 ```
