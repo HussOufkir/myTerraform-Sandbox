@@ -17,9 +17,11 @@ Certification (official) : https://www.hashicorp.com/certification/terraform-ass
 - The state file (tfstate ?) is the real configuration of your infratructure. Terraform use this file to determine the changes to make to the infrastructure after the "plan".
 - The Terraform config file is in  declarative format, it means that the file is the end state, the dependency and the order of execution are managed by Terraform.
 - A "module" is a reusable and configurable collections of infrastructure provided to save time and offer a standardized configuration.
+- Terraform can manage IaaS (AWS, Azure, GCP, ... and also on-premise VMware, ...), PaaS (K8S, Heroku, ...) and SaaS (GitHub, Fastly, ...).
+- 
 
 # To-Do
-- Use Terraform Cloud.
+- Use Terraform Cloud. (one state ? centralized vars ?)
 - Why Terraform ?
 - Terraform or Ansible ?
 
