@@ -31,6 +31,7 @@ terraform init # to prepapre the working directory
 terraform validate # to validate the syntax (doesnt if the code is correct or not)
 terraform plan # to prepapre the configuration by showing the changes
 terraform refresh # to update the state to match remote systems
+terraform state list # to see a list of ressources actually managed by Terraform
 ```
 ### Apply
 ```
