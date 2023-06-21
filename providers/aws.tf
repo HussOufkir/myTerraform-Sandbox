@@ -1,17 +1,21 @@
 # Create the PROVIDER block
 
 ## Not mandatory because the provider is managed by hashicorp
-/*
 terraform { 
+    cloud {
+    organization = "HussOufkir"
+    workspaces {
+      name = "myWorkspace"
+    }
+  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.16"
+      #version = "~> 4.16"
     }
   }
   required_version = ">= 1.2.0"
 }
-*/
 
 provider "aws" {
   region = "us-east-1"
@@ -22,10 +26,10 @@ provider "aws" {
 resource "aws_vpc" "myVpc_tf" {
   cidr_block = "10.0.0.0/16"
   tags = {
-    Name = "myVpc_tf"
+    Name = var.vpc_name # it's a variable
   }
 }
-
+/*
 # Create a SUBNET
 
 resource "aws_subnet" "mySubnet_tf" {
@@ -157,3 +161,4 @@ resource "aws_eip" "myEIP_tf" {
   network_interface = aws_network_interface.myNetInterface_tf.id
   depends_on        = [aws_instance.myInstance_tf]
 }
+*/

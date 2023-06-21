@@ -25,21 +25,82 @@ Certification (official) : https://www.hashicorp.com/certification/terraform-ass
 - Terraform or Ansible ?
 - Provisioner ?
 - Sentinel policies ?
+- Backend ?
+
+# Terraform Cloud
+
+To be able to use AWS provider in TF cloud, the credentials must be stored in variables env in the TF cloud GUI : AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY. (Dont forget to mark them as SENSITIVE). A project, in TF cloud, is composed of one or more workspaces. It helps to organize workspaces in a large organization. It's also possible to approve manually in the UI after a terraform apply. A new run can be launched via UI after updating for example a variable. Manage variable corectly give us the possibility to update an entire configuration without updating de tf file, only the variable in TF cloud.
+
+## Variable sets
+Variable sets are defined in TF cloud and can be used by all workspaces. They are mostly used for credentials (ex: AWS Credentials). They can be "sensitive" or not, for environment or Terraform (HCL format, or simply the value of the key). "TF_LOG" can also be werwritted, for example. "Terraform" variables refers to "input variables".
+
+```hcl
+variable "instance_count" {
+  description = "Number of instances to provision."
+  type        = number
+  default     = 2
+}
+```
+```hcl
+module "ec2_instances" {
+  source = "./modules/aws-instance"
+  instance_count = var.instance_count
+ # ...
+}
+```
+
+```hcl
+variable "myVar" {} # to be able to use "myVar" defined in TF cloud. (unique solution ?)
+```
+
+Variables can be overritted in CLI, before execution, else, the default value will be used.
+
+Order for variable priority :
+1. Command line argument variables (RUN-SPECIFIC)
+2. Local env variable with prefixed with TF_VAR_ (RUN-SPECIFIC)
+3. Workspace specific variable (WORKSPACE-SPECIFIC)
+4. Workspace-scoped variable sets (WORKSPACE-SCOPED)
+5. Project-scoped variable sets (PROJECT-SCOPED)
+6. Global variable sets (GLOBAL)
+7. *.auto.tfvars
+8. terraform.tfvars
+
+To change a variable in CLI, we ca use :
+
+```hcl
+terraform apply -var="myKey=myNewValue"
+```
+
+
+More info : https://developer.hashicorp.com/terraform/cloud-docs/workspaces/variables#scope
+
+## Structure (idea ?)
+
+variables.tf : defines the input variables that are referenced in main.tf, which make the configuration customizable. You will define these variables in the Terraform Cloud UI later on in this tutorial.
+
+outputs.tf : defines the information about your infrastructure that Terraform Cloud will display to you when it makes changes.
+
+terraform.tf : defines version constraints for Terraform and the AWS provider and the cloud block for the Terraform Cloud integration.
+
 
 ## Basic commands
 ```
 terraform -help # to show commands list
 terraform -help <cmd> # to show infos for a command
-terraform init # to prepapre the working directory
+terraform init # to prepapre the working directory (also to begin to use the TF cloud or after an update of the TF config block)
 terraform validate # to validate the syntax (doesnt if the code is correct or not)
 terraform plan # to prepapre the configuration by showing the changes
 terraform refresh # to update the state to match remote systems
 terraform state list # to see a list of ressources actually managed by Terraform
+terraform fmt # to format the code
+terraform show # to see the curent state
+terraform login # to connect to TF cloud (first step to use terraform cloud)
 ```
 ### Apply
 ```
 terraform apply # to create/update the infrastructure
 terraform apply -target="<provider>_<ressource_type>.<name>" # to create/update a resource of the infrastructure (the linked resources will be also created/updated)
+terraform apply -var "myVarName=<var_value>" # to specify another variable value
 ```
 ### Destroy
 ```
