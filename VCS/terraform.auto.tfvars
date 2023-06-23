@@ -1,0 +1,2 @@
+myvarDeux = "autoTfvarsDeux"
+myvar = "autoTfvars"
