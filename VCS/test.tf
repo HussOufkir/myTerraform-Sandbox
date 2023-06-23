@@ -24,8 +24,16 @@ provider "aws" {
 resource "aws_vpc" "myVpc_tf" {
   cidr_block = "10.0.0.0/16"
   tags = {
-    Name = "myName2" # it's a variable
+    Name = var.myvar # it's a variable
+  }
+}
+
+resource "aws_vpc" "myVpc_tf2" {
+  cidr_block = "10.1.0.0/16"
+  tags = {
+    Name = var.myvarDeux # it's a variable
   }
 }
 
 variable "myvar" {}
+variable "myvarDeux" {}
