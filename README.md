@@ -31,6 +31,8 @@ Certification (official) : https://www.hashicorp.com/certification/terraform-ass
 
 To be able to use AWS provider in TF cloud, the credentials must be stored in variables env in the TF cloud GUI : AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY. (Dont forget to mark them as SENSITIVE). A project, in TF cloud, is composed of one or more workspaces. It helps to organize workspaces in a large organization. It's also possible to approve manually in the UI after a terraform apply. A new run can be launched via UI after updating for example a variable. Manage variable corectly give us the possibility to update an entire configuration without updating de tf file, only the variable in TF cloud.
 
+CLI can be used to trigger but VCS also. For example, Github can be used to be triggered by a push (apply) or by a pull request (plan only). For VCS, the cloud block must be deleted.
+
 ## Variable sets
 Variable sets are defined in TF cloud and can be used by all workspaces. They are mostly used for credentials (ex: AWS Credentials). They can be "sensitive" or not, for environment or Terraform (HCL format, or simply the value of the key). "TF_LOG" can also be werwritted, for example. "Terraform" variables refers to "input variables".
 
