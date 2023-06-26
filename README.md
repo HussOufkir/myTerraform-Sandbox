@@ -239,3 +239,31 @@ terraform plan -destroy -out=destroy.tfplan
 terraform apply destroy.tfplan
 ```
 
+### Sentinel
+A policy set contains policies. A policy is a rule that can be set to :
+- Hard-mandatory : It's the strongest enforcement level. The policy must have a "true" value to pass.
+- Soft-mandatory : It's an enforcement level that lets the owner or a user with override priviliege to bypass the rule.
+- Advisory : It's a notification.
+
+A policy set is attached to a workspace.
+
+VCS can be used, or the UI (maybe the CLI also ? to verify !).
+
+A policy set is defined in an *.hcl file, and the policy is defined in a <policy_name_in_sentinel_file>.sentinel file.
+
+sentinel.hcl
+```
+policy "myPolicy" {
+    enforcement_level = "soft-mandatory"
+}
+# ...
+```
+myPolicy.sentinel
+```
+import "tfplan"
+import "version"
+
+versionCheck = rule {
+  version.new(tfplan.terraform_version).greater_than("1.1.0")
+}
+```
