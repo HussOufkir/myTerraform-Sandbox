@@ -67,7 +67,14 @@ Order for variable priority :
 7. *.auto.tfvars
 8. terraform.tfvars
 
-To change a variable in CLI, we ca use :
+*.auto.tfvars files are in a format like this :
+
+```
+myVar1 = "myValue1"
+myVar2 = "myValue2"
+```
+
+To change a variable in CLI, we can use :
 
 ```hcl
 terraform apply -var="myKey=myNewValue"
@@ -224,4 +231,11 @@ provider "aws" {
 }
 ```
 More info : https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html 
+
+## Destroy 
+
+```
+terraform plan -destroy -out=destroy.tfplan
+terraform apply destroy.tfplan
+```
 
