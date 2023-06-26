@@ -160,3 +160,9 @@ resource "aws_eip" "myEIP_tf" {
   network_interface = aws_network_interface.myNetInterface_tf.id
   depends_on        = [aws_instance.myInstance_tf]
 }
+
+variable "vpc_name" {
+  description = "Name of the VPC"
+  type        = string
+  default     = "myVpc_tf"
+}
