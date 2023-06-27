@@ -51,7 +51,7 @@
 
 - "=" : (or no operator). The exact value.
 - "<,>,<=,>=" : Less than, greater than, less or equal than, greater or equal than.
-- "~>" : Rightmost version component to increment. For example "~>1.0.4" allow all minor version like 1.0.5 and 1.0.10 but not 1.1.0. This is usually called the pessimistic constraint operator.
+- "\~>" : Rightmost version component to increment. For example "\~>1.0.4" allow all minor version like 1.0.5 and 1.0.10 but not 1.1.0. This is usually called the pessimistic constraint operator.
 
 A combination of constraints like this ">= 1.2.0, < 2.0.0" can also be used.
 
