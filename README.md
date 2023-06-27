@@ -4,9 +4,11 @@
 # Table of Contents
 
 - [Theory](https://github.com/HussOufkir/myTerraform-Sandbox#theory)
+  - [Version Constraints](https://github.com/HussOufkir/myTerraform-Sandbox#version-constraints)
   - [CIDR (Classless Inter-Domain Routing)](https://github.com/HussOufkir/myTerraform-Sandbox#cidr-classless-inter-domain-routing)
 
 - [Structure & syntax](https://github.com/HussOufkir/myTerraform-Sandbox#structure--syntax)
+  - [Settings](https://github.com/HussOufkir/myTerraform-Sandbox#settings)
   - [External provider](https://github.com/HussOufkir/myTerraform-Sandbox#external-provider)
   - [Resources](https://github.com/HussOufkir/myTerraform-Sandbox#resources)
   - [Variables](https://github.com/HussOufkir/myTerraform-Sandbox#variables)
@@ -42,6 +44,19 @@
 - The Terraform config file is in  declarative format, it means that the file is the end state, the dependency and the order of execution are managed by Terraform.
 - A "module" is a reusable and configurable collections of infrastructure provided to save time and offer a standardized configuration.
 - Terraform can manage IaaS (AWS, Azure, GCP, ... and also on-premise VMware, ...), PaaS (K8S, Heroku, ...) and SaaS (GitHub, Fastly, ...).
+- For small infrastructures, it seems that TF can always sync the state file before a plan or an apply, but for large infrastructure, the state file is the only source of trust.
+- For individual use, the local state file is sufficient, but in a team, the remote state is a better solution to avoid two or more user accidentaly running TF at the same time.
+
+## Version Constraints
+
+- "=" : (or no operator). The exact value.
+- "<,>,<=,>=" : Less than, greater than, less or equal than, greater or equal than.
+- "~>" : Rightmost version component to increment. For example "~>1.0.4" allow all minor version like 1.0.5 and 1.0.10 but not 1.1.0. This is usually called the pessimistic constraint operator.
+
+A combination of constraints like this ">= 1.2.0, < 2.0.0" can also be used.
+
+More info : https://developer.hashicorp.com/terraform/language/v1.1.x/expressions/version-constraints
+
 ## CIDR (Classless Inter-Domain Routing)
 
 To describe an ip block.
@@ -55,12 +70,35 @@ variables.tf : defines the input variables that are referenced in main.tf, which
 outputs.tf : defines the information about your infrastructure that Terraform Cloud will display to you when it makes changes.
 
 terraform.tf : defines version constraints for Terraform and the AWS provider and the cloud block for the Terraform Cloud integration.
+## Settings
+
+The settings block can only contains constant values, not variables values such as attributes from resources or input variables.
+
+```hcl
+terraform {
+  cloud {
+    # ... used for CLI-driven run workflow
+  }
+  backend {
+    # ... to configure a backend (where the state will be stored)
+  }
+  required_version = "..." # ... to specify the verison to use.
+  required_providers {
+    # to specify all of the providers required for this module. See bellow.
+  }
+  provider_meta {
+    # ... metadata to add if the provider need them. (optional, depend on the provider)
+  }
+  # ...
+}
+```
+
 ## External provider
 ```hcl
 terraform {
   required_providers {
     <name of the provider> = {
-      source  = "<source>"
+      source  = "<source>" # for an in-house provider, assuming "example.com" is my enterprise, we should use : "terraform.example.com/examplecorp/ourcloud"
       version = "..."
     }
   }
